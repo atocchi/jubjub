@@ -10,7 +10,7 @@ function App() {
   const [ip, setIp] = useState('localhost')
   const myRef = useRef({selectedFile: null});
   const [user,setUser] = useState("anon")
-  const [post,setPost] = useState([{image: "bepis"},{image: "bepis2"},{image: "bepis2"},{image: "bepis2"},{image: "bepis2"},{image: "bepis2"},{image: "bepis2"},{image: "bepis2"},{image: "bepis2"},{image: "bepis2"}])
+  const [post,setPost] = useState([{}])
   
 useEffect(() =>  {
     axios.get(`http://${ip}:3001/api`).then(function (res) {
@@ -102,7 +102,7 @@ const useStyles = makeStyles(theme => ({
     return (
     <div style={{display: 'grids'}}><p>TOP 10 MEMES ARE Below</p>
     {post.map((item, key) =>
-      <div style={{width: 250}}><img src ={item.image} style={{width: 250}}/><p style={{textAlign: 'center',width: 250}}>{item.user}</p></div>
+        <div style={{width: 250}}><img src ={`http://${ip}:3001/${item.image}`} style={{width: 250}}/><p style={{textAlign: 'center',width: 250}}>{item.user}</p></div>
     )}
     </div>
     )

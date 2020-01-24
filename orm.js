@@ -13,7 +13,7 @@ connection.query(query, function(err, result) {
     cb(result);
   })
 },
-
+//finds 10 most recent inputs based on users name, fend to api
 findUser: function (user,cb){
   query = "SELECT * FROM files WHERE user = (?) ORDER BY id DESC LIMIT 10";
   connection.query(query,[user], function(err, result) {

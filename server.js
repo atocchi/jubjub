@@ -66,23 +66,24 @@ app.get("/api", cors(), function(req, res) {
 //Main Post route
 app.post("/api/post", cors(), function(req, res) {
     console.log(req.files)
-    let upload = (req.files.myFile)
-    upload.mv(`./uploads/${upload.name}`)
+    upload = (req.files.myFile)
+    // upload.mv(`./uploads/${upload.name}`)
     res.send("Post Recieved")
     //seperating out post routes here so that I can get API data while the upload data is sent at the same time
     app.post("/api/data",cors(), function (req,res){
-        console.log(req.body)
+        console.log(req.body.address + upload.name)
         if(req.body.name === ''){
             //if no name it becomes anon
               req.body.name = 'anon'
               }
-         orm.insertOne(`http://${ip}:${port}/${req.body.address}`,req.body.name)
-         //creates a sepearate folder based on the uploaders name
-         upload.mv(`./users/${req.body.name}/${upload.name}`)
+         orm.insertOne(req.body.address,req.body.name)
+         //creates a sepearate folder based on the uploaders name(1 second delay to ensure that proper form is caught by .mv)
+         setTimeout(function (res) {upload.mv(`./users/${req.body.name}/${upload.name}`)}, 1000)
         res.send("Data Logged")
     });
 });
 
+//when proper user route is input will pull users 10 most recently uploaded memes
 app.get('/api/:user',cors(), function(req,res){
     console.log(req.params.user)
     orm.findUser(req.params.user, function(data){
