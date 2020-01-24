@@ -48,7 +48,7 @@ app.use(express.static('users'))
 
 //Start Server 
 app.listen(PORT, function() {
-    console.log("Server listening on: http://localhost:" + PORT);
+    console.log(`Server listening on: http://${ip}:${PORT}`);
   });
 
 //Home page
@@ -76,12 +76,19 @@ app.post("/api/post", cors(), function(req, res) {
             //if no name it becomes anon
               req.body.name = 'anon'
               }
-         orm.insertOne(`http://${ip}:3001/${req.body.address}`,req.body.name)
+         orm.insertOne(`http://${ip}:${port}/${req.body.address}`,req.body.name)
          //creates a sepearate folder based on the uploaders name
          upload.mv(`./users/${req.body.name}/${upload.name}`)
         res.send("Data Logged")
     });
 });
+
+app.get('/api/:user',cors(), function(req,res){
+    console.log(req.params.user)
+    orm.findUser(req.params.user, function(data){
+        res.json(data)
+        })
+})
 
 //These Routes are not currently used
 //Main Update route

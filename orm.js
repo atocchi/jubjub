@@ -14,6 +14,14 @@ connection.query(query, function(err, result) {
   })
 },
 
+findUser: function (user,cb){
+  query = "SELECT * FROM files WHERE user = (?) ORDER BY id DESC LIMIT 10";
+  connection.query(query,[user], function(err, result) {
+      if (err) throw err;
+      cb(result);
+    })
+  },
+
 //This Query Inserts the Variable into the MYSQL DB
 insertOne: function(image,user){
 query = "INSERT INTO files (image, user) VALUES (?,?)";
