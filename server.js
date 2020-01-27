@@ -63,11 +63,16 @@ app.get("/api", cors(), function(req, res) {
     })
 });
 
+// app.post("api/post/:user",cors(), function (req,res){
+//     console.log(req.params.user)
+//     res.send(`Data logged for ${req.params.user}`)
+// })
+
 //Main Post route
 app.post("/api/post", cors(), function(req, res) {
     console.log(req.files)
     upload = (req.files.myFile)
-    // upload.mv(`./uploads/${upload.name}`)
+    upload.mv(`./uploads/${upload.name}`)
     res.send("Post Recieved")
     //seperating out post routes here so that I can get API data while the upload data is sent at the same time
     app.post("/api/data",cors(), function (req,res){

@@ -11,6 +11,7 @@ function App() {
   const myRef = useRef({selectedFile: null});
   const [user,setUser] = useState("anon")
   const [post,setPost] = useState([{}])
+  const [uPost,setUpost] = useState([{image:`q.png`}])
   
 useEffect(() =>  {
     axios.get(`http://${ip}:3001/api`).then(function (res) {
@@ -20,9 +21,21 @@ useEffect(() =>  {
     console.log(post)
     })
   },[]);
+    function userHandler (){
+      let uSearch = document.getElementById('uName').value
+      axios.get(`http://${ip}:3001/api/${uSearch}`).then(function (res) {
+        setUpost(res.data)
+        console.log(uPost)
+      })
+    }
+
 
     function uploadHandler() {
       let upload = myRef.current.files[0]
+      if (upload === undefined){
+        alert(`Please Select a File for Upload`)
+        return
+      }else{
       let uName = document.getElementById("uName").value
       let uData = {name: uName, address: upload.name}
       const formData = new FormData()
@@ -36,6 +49,7 @@ useEffect(() =>  {
       alert(`Meme Sucessfully Uploaded`);
       window.location.reload(false);
     })
+  }
     }
 
   
@@ -94,7 +108,13 @@ const useStyles = makeStyles(theme => ({
 
   function users(){
     return(
-      <div>Users Page underconstruction </div>
+      <div><input id="uName" type="text" />
+      <button onClick={() => {userHandler()}}>SEARCH</button>
+      <div>-------------</div>
+      {uPost.map((item, key) =>
+        <div style={{width: 250}}><img src ={`http://${ip}:3001/${item.image}`} style={{width: 250}}/><p style={{textAlign: 'center',width: 250}}>{item.user}</p></div>
+       )}
+      </div>
     )
   }
 
