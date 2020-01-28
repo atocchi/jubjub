@@ -63,12 +63,22 @@ app.get("/api", cors(), function(req, res) {
     })
 });
 
-// app.post("api/post/:user",cors(), function (req,res){
-//     console.log(req.params.user)
-//     res.send(`Data logged for ${req.params.user}`)
+// app.post("/api/data",cors(), function (req,res){
+//     if(req.body.name === ''){
+//         //if no name it becomes anon
+//           req.body.name = 'anon'
+//           }
+//      orm.insertOne(req.body.address,req.body.name)
+//      res.send('Post Recieved')
+//      app.post('/api/post',cors(), function (req,res){
+//          upload = (req.files.myfile)
+//          console.log(upload.name + req.body.address)
+//          upload.mv(`./users/${req.body.name}/${upload.name}`)
+//          res.send('Data Logged')
+//      })
 // })
 
-//Main Post route
+// Main Post route
 app.post("/api/post", cors(), function(req, res) {
     console.log(req.files)
     upload = (req.files.myFile)
@@ -85,6 +95,7 @@ app.post("/api/post", cors(), function(req, res) {
          //creates a sepearate folder based on the uploaders name(1 second delay to ensure that proper form is caught by .mv)
          setTimeout(function (res) {upload.mv(`./users/${req.body.name}/${upload.name}`)}, 1000)
         res.send("Data Logged")
+         setTimeout(function (res) {console.log(upload.name)},1000 )
     });
 });
 

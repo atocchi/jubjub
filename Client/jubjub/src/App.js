@@ -110,17 +110,17 @@ const useStyles = makeStyles(theme => ({
     
 
     return (
-    <div>Home <p>Welcome to The Smoking Hot Meme Repository, Please Upload Your Memes Below and I Will View Them in My Own Time</p>
+    <div style={{marginLeft: 20}}>Home <p>Welcome to The Smoking Hot Meme Repository, Please Upload Your Memes Below and I Will View Them in My Own Time</p>
       <input type="file" ref={myRef}/>
-      &nbsp;User&nbsp;<input id="uName" type="text"/>&nbsp; 
-    <button onClick={() => {uploadHandler()}}>Upload!</button>
+      <p>&nbsp;User&nbsp;<input id="uName" type="text"/>&nbsp; 
+    <button onClick={() => {uploadHandler()}}>Upload!</button></p>
     </div>
     )
   }
 
   function users(){
     return(
-      <div><input id="uName" type="text" />
+      <div><input style={{marginLeft: 20}} id="uName" type="text" />
       <button onClick={() => {userHandler()}}>SEARCH</button>
       
       <Grid container style={{marginLeft: 10}}>
@@ -136,7 +136,7 @@ const useStyles = makeStyles(theme => ({
 
   function API(){
     return (
-    <div style={{display: 'grids'}}><p style={{marginLeft: 20}}>TOP 10 MEMES ARE Below</p>
+    <div style={{display: 'grids'}}><p style={{marginLeft: 20,marginBottom: 40}}>TOP 10 MEMES ARE Below</p>
      <Grid container spacing={10} style={{marginLeft: 10}}>
     {post.map((item, key) =>
     <Paper style={{width: 250,margin: 10}}><img src ={`http://${ip}:3001/${item.image}`} style={{width: 250, height: 250}}/><p style={{textAlign: 'center',width: 250}}>{item.user}</p></Paper>

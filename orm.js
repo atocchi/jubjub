@@ -27,6 +27,7 @@ insertOne: function(image,user){
 query = "INSERT INTO files (image, user) VALUES (?,?)";
 connection.query(query,[image,user], function(err, result) {
         if (err) throw err;
+        console.log(`inserted ${image} for ${user}`)
       });
 },
 
