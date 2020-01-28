@@ -1,9 +1,21 @@
 import React, {useState, useEffect, useContext, useReducer, useRef} from 'react';
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
-import { Grid } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+}));
 
 
 function App() {
@@ -111,9 +123,13 @@ const useStyles = makeStyles(theme => ({
       <div><input id="uName" type="text" />
       <button onClick={() => {userHandler()}}>SEARCH</button>
       <div>-------------</div>
+      <Grid container spacing={4}>
+      
       {uPost.map((item, key) =>
-        <div style={{width: 250}}><img src ={`http://${ip}:3001/${item.image}`} style={{width: 250}}/><p style={{textAlign: 'center',width: 250}}>{item.user}</p></div>
+      <Paper style={{width: 250}}><img src ={`http://${ip}:3001/${item.image}`} style={{width: 250, height: 250}}/><p>{item.user}</p></Paper>
        )}
+      
+      </Grid>
       </div>
     )
   }
@@ -121,9 +137,11 @@ const useStyles = makeStyles(theme => ({
   function API(){
     return (
     <div style={{display: 'grids'}}><p>TOP 10 MEMES ARE Below</p>
+     <Grid container spacing={10}>
     {post.map((item, key) =>
-        <div style={{width: 250}}><img src ={`http://${ip}:3001/${item.image}`} style={{width: 250}}/><p style={{textAlign: 'center',width: 250}}>{item.user}</p></div>
+    <Paper style={{width: 250}}><img src ={`http://${ip}:3001/${item.image}`} style={{width: 250, height: 250}}/><p style={{textAlign: 'center',width: 250}}>{item.user}</p></Paper>
     )}
+    </Grid>
     </div>
     )
   }
