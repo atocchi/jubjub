@@ -8,7 +8,7 @@ body {
 
 p {
   opacity: 0.4;
-  background-color: antiquewhite;
+  align-self: auto;
 }
 
 code {

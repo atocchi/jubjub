@@ -122,11 +122,11 @@ const useStyles = makeStyles(theme => ({
     return(
       <div><input id="uName" type="text" />
       <button onClick={() => {userHandler()}}>SEARCH</button>
-      <div>-------------</div>
-      <Grid container spacing={4}>
+      
+      <Grid container style={{marginLeft: 10}}>
       
       {uPost.map((item, key) =>
-      <Paper style={{width: 250}}><img src ={`http://${ip}:3001/${item.image}`} style={{width: 250, height: 250}}/><p>{item.user}</p></Paper>
+      <Paper style={{width: 250, margin: 10}}><img src ={`http://${ip}:3001/${item.image}`} style={{width: 250, height: 250}}/><p style={{textAlign: 'center',width: 250}}>{item.user}</p></Paper>
        )}
       
       </Grid>
@@ -136,10 +136,10 @@ const useStyles = makeStyles(theme => ({
 
   function API(){
     return (
-    <div style={{display: 'grids'}}><p>TOP 10 MEMES ARE Below</p>
-     <Grid container spacing={10}>
+    <div style={{display: 'grids'}}><p style={{marginLeft: 20}}>TOP 10 MEMES ARE Below</p>
+     <Grid container spacing={10} style={{marginLeft: 10}}>
     {post.map((item, key) =>
-    <Paper style={{width: 250}}><img src ={`http://${ip}:3001/${item.image}`} style={{width: 250, height: 250}}/><p style={{textAlign: 'center',width: 250}}>{item.user}</p></Paper>
+    <Paper style={{width: 250,margin: 10}}><img src ={`http://${ip}:3001/${item.image}`} style={{width: 250, height: 250}}/><p style={{textAlign: 'center',width: 250}}>{item.user}</p></Paper>
     )}
     </Grid>
     </div>
