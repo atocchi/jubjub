@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "./static/css/main.ddbdbc56.chunk.css",
+    "main.js": "./static/js/main.40b6dfad.chunk.js",
+    "main.js.map": "./static/js/main.40b6dfad.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.171eeded.js",
+    "runtime-main.js.map": "./static/js/runtime-main.171eeded.js.map",
+    "static/js/2.e8ee327a.chunk.js": "./static/js/2.e8ee327a.chunk.js",
+    "static/js/2.e8ee327a.chunk.js.map": "./static/js/2.e8ee327a.chunk.js.map",
+    "index.html": "./index.html",
+    "precache-manifest.c67610fe958809346e516bfe7ff91f3a.js": "./precache-manifest.c67610fe958809346e516bfe7ff91f3a.js",
+    "service-worker.js": "./service-worker.js",
+    "static/css/main.ddbdbc56.chunk.css.map": "./static/css/main.ddbdbc56.chunk.css.map",
+    "static/js/2.e8ee327a.chunk.js.LICENSE": "./static/js/2.e8ee327a.chunk.js.LICENSE",
+    "static/media/index.css": "./static/media/defocused.2b71dc6d.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.171eeded.js",
+    "static/js/2.e8ee327a.chunk.js",
+    "static/css/main.ddbdbc56.chunk.css",
+    "static/js/main.40b6dfad.chunk.js"
+  ]
+}
