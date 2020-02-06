@@ -24,7 +24,7 @@ const fileUpload = require('express-fileupload');
 let ip = 'localhost'
 
 //build PORT is 3001, prod is set in file 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 80;
 
 //CORS options, commented out unused whitelist/blacklist options
 // app.use(cors(corsOptions));
@@ -37,14 +37,12 @@ app.use(fileUpload ({createParentPath: true}) )
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+
+app.use(express.static('Client/jubjub/build'))
 //static server for uploads
 app.use(express.static('uploads'))
 //static server for user "buckets"
 app.use(express.static('users'))
-
-
-
-
 
 //Start Server 
 app.listen(PORT, function() {

@@ -26,7 +26,7 @@ function App() {
   const [uPost,setUpost] = useState([{image:`q.png`}])
   
 useEffect(() =>  {
-    axios.get(`http://${ip}:3001/api`).then(function (res) {
+    axios.get(`http://${ip}/api`).then(function (res) {
     setPost(
       res.data
     )
@@ -35,7 +35,7 @@ useEffect(() =>  {
   },[]);
     function userHandler (){
       let uSearch = document.getElementById('uName').value
-      axios.get(`http://${ip}:3001/api/${uSearch}`).then(function (res) {
+      axios.get(`http://${ip}/api/${uSearch}`).then(function (res) {
         setUpost(res.data)
         console.log(uPost)
       })
@@ -56,8 +56,8 @@ useEffect(() =>  {
        upload,
        upload.name
   )
-     axios.post(`http://${ip}:3001/api/post`, formData)
-     axios.post(`http://${ip}:3001/api/data`, uData).then(function (res){
+     axios.post(`http://${ip}/api/post`, formData)
+     axios.post(`http://${ip}/api/data`, uData).then(function (res){
       alert(`Meme Sucessfully Uploaded`);
       window.location.reload(false);
     })
@@ -112,7 +112,7 @@ const useStyles = makeStyles(theme => ({
     return (
     <div style={{marginLeft: 20}}>Home <p>Welcome to The Smoking Hot Meme Repository, Please Upload Your Memes Below and I Will View Them in My Own Time</p>
       <input type="file" ref={myRef}/>
-      <p>&nbsp;User&nbsp;<input id="uName" type="text"/>&nbsp; 
+      <p style={{opacity: 0.9}}>&nbsp;User&nbsp;<input id="uName" type="text"/>&nbsp; 
     <button onClick={() => {uploadHandler()}}>Upload!</button></p>
     </div>
     )
@@ -126,7 +126,7 @@ const useStyles = makeStyles(theme => ({
       <Grid container style={{marginLeft: 10}}>
       
       {uPost.map((item, key) =>
-      <Paper style={{width: 250, margin: 10}}><img src ={`http://${ip}:3001/${item.image}`} style={{width: 250, height: 250}}/><p style={{textAlign: 'center',width: 250}}>{item.user}</p></Paper>
+      <Paper style={{width: 250, margin: 10}}><img src ={`http://${ip}/${item.image}`} style={{width: 250, height: 250}}/><p style={{textAlign: 'center',width: 250}}>{item.user}</p></Paper>
        )}
       
       </Grid>
@@ -139,7 +139,7 @@ const useStyles = makeStyles(theme => ({
     <div style={{display: 'grids'}}><p style={{marginLeft: 20,marginBottom: 40}}>TOP 10 MEMES ARE Below</p>
      <Grid container spacing={10} style={{marginLeft: 10}}>
     {post.map((item, key) =>
-    <Paper style={{width: 250,margin: 10}}><img src ={`http://${ip}:3001/${item.image}`} style={{width: 250, height: 250}}/><p style={{textAlign: 'center',width: 250}}>{item.user}</p></Paper>
+    <Paper style={{width: 250,margin: 10}}><img src ={`http://${ip}/${item.image}`} style={{width: 250, height: 250}}/><p style={{textAlign: 'center',width: 250}}>{item.user}</p></Paper>
     )}
     </Grid>
     </div>
