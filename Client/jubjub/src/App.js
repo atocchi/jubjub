@@ -97,7 +97,7 @@ const useStyles = makeStyles(theme => ({
               <Link to="/" >Home</Link>
             </li>
             <li>
-              <Link to="/API">10 Newests MEMES</Link>
+              <Link to="/10">10 Newests MEMES</Link>
             </li>
             <li>
               <Link to="/users">Users</Link>
@@ -105,7 +105,7 @@ const useStyles = makeStyles(theme => ({
           </ul>
         </nav>
     <Switch>
-     <Route path="/API" component={API} />
+     <Route path="/10" component={API} />
      <Route exact path="/" component={Home} />
      <Route path="/users" component={users} />
     </Switch>
