@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
 
 
 function App() {
-  const [ip, setIp] = useState('localhost')
+  const [ip, setIp] = useState('Memerepository.asuscomm.com')
   const myRef = useRef({selectedFile: null});
   const [user,setUser] = useState("anon")
   const [post,setPost] = useState([{}])

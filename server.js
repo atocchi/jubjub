@@ -49,6 +49,15 @@ app.listen(PORT, function() {
     console.log(`Server listening on: http://${ip}:${PORT}`);
   });
 
+//Failback for React Router Functionality
+app.get('/*', function(req, res) {
+    res.sendFile(path.join(__dirname, 'Client/jubjub/build/index.html'), function(err) {
+      if (err) {
+        res.status(500).send(err)
+      }
+    })
+  })
+
 //Home page
 app.get("/", cors(), function(req, res) {
     res.json("Welcome to the API/Post Routes")
