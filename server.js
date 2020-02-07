@@ -112,7 +112,8 @@ app.put("/api/update", function(req, res) {
     res.send("Update Recieved")
 });
 //Main Delete route
-app.delete("/api/delete", function(req, res) {
-    console.log(req.body)
-    res.send(`delete request at ${req.params}`)
+app.post("/api/delete", function(req, res) {
+    orm.deleteOne(req.body.id)
+    console.log(req.id)
+    res.send(`delete request at ${req.body.id}`)
 });

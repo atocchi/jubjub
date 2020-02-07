@@ -41,6 +41,15 @@ useEffect(() =>  {
       })
     }
 
+    function deleteHandler(e){
+      let del = {id: e.target.id}
+      axios.post(`http://${ip}/api/delete`,del).then(function (res){
+      console.log(res.status)
+      }
+
+      )
+    }
+
 
     function uploadHandler() {
       let upload = myRef.current.files[0]
@@ -139,7 +148,7 @@ const useStyles = makeStyles(theme => ({
     <div style={{display: 'grids'}}><p style={{marginLeft: 20,marginBottom: 40}}>TOP 10 MEMES ARE Below</p>
      <Grid container spacing={10} style={{marginLeft: 10}}>
     {post.map((item, key) =>
-    <Paper style={{width: 250,margin: 10}}><img src ={`http://${ip}/${item.image}`} style={{width: 250, height: 250}}/><p style={{textAlign: 'center',width: 250}}>{item.user}</p></Paper>
+    <Paper style={{width: 250,margin: 10}}><p style={{opacity:0.1, padding: 0, margin: 0, border: 0, height: 0}}><button id={item.id} onClick={(e) => deleteHandler(e)}>x</button></p><img src ={`http://${ip}/${item.image}`} style={{width: 250, height: 250}}/><p style={{textAlign: 'center',width: 250}}>{item.user}</p></Paper>
     )}
     </Grid>
     </div>

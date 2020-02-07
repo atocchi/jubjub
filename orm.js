@@ -31,6 +31,13 @@ connection.query(query,[image,user], function(err, result) {
       });
 },
 
+deleteOne: function(id){
+query = "DELETE FROM files WHERE id=(?)";
+connection.query(query,[id], function(err,result){
+  if (err) throw err;
+  console.log(`Deleted ID #${id} from DataBase`)
+})
+}
 
 //not currently used
 //This Query updates a value in the mysql database (the boolean to true)
