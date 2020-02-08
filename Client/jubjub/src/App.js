@@ -65,11 +65,15 @@ useEffect(() =>  {
        upload,
        upload.name
   )
-     axios.post(`http://${ip}/api/post`, formData)
-     axios.post(`http://${ip}/api/data`, uData).then(function (res){
-      alert(`Meme Sucessfully Uploaded`);
+  axios.post(`http://${ip}/api/data`, uData).then(function (res){
+    console.log(res.status);
+  })
+  axios.post(`http://${ip}/api/post`, formData).then(function (res){
+    if (res.status == 200){
+      alert("Meme Deposited");
       window.location.reload(false);
-    })
+    }
+  })
   }
     }
 
