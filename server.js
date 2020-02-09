@@ -31,7 +31,7 @@ const PORT = process.env.PORT || 80;
 app.use(cors());
 app.set('trust proxy', true);
 //file upload options for creating buckets 
-app.use(fileUpload ({createParentPath: true}) )
+app.use(fileUpload ({createParentPath: true},{debug: true}) )
 
 //Body Parse to build API
 app.use(express.urlencoded({ extended: true }));
@@ -49,61 +49,50 @@ app.listen(PORT, function() {
     console.log(`Server listening on: http://${ip}:${PORT}`);
   });
 
-//Failback for React Router Functionality
-app.get('/*', function(req, res) {
-    res.sendFile(path.join(__dirname, 'Client/jubjub/build/index.html'), function(err) {
-      if (err) {
-        res.status(500).send(err)
-      }
-    })
-  })
+  
+  //Home page
+  // app.get("/", cors(), function(req, res) {
+      //     res.json("Welcome to the API/Post Routes")
+      // });
 
-//Home page
-app.get("/", cors(), function(req, res) {
-    res.json("Welcome to the API/Post Routes")
-});
-
-//Main GET route
+      //Main GET route
 app.get("/api", cors(), function(req, res) {
     orm.selectTen(function(data){
-    res.json(data)
+        res.json(data)
     })
 });
 
 // app.post("/api/data",cors(), function (req,res){
-//     if(req.body.name === ''){
+    //     if(req.body.name === ''){
 //         //if no name it becomes anon
 //           req.body.name = 'anon'
 //           }
 //      orm.insertOne(req.body.address,req.body.name)
 //      res.send('Post Recieved')
 //      app.post('/api/post',cors(), function (req,res){
-//          upload = (req.files.myfile)
+    //          upload = (req.files.myfile)
 //          console.log(upload.name + req.body.address)
 //          upload.mv(`./users/${req.body.name}/${upload.name}`)
 //          res.send('Data Logged')
 //      })
 // })
 
-// Main Post route
+// Post Route for Upload
 app.post("/api/post", cors(), function(req, res) {
-    console.log(req.files)
+    console.log(req.files, 'This should happen First')
     upload = (req.files.myFile)
     upload.mv(`./uploads/${upload.name}`)
     res.send("Post Recieved")
-    //seperating out post routes here so that I can get API data while the upload data is sent at the same time
-    app.post("/api/data",cors(), function (req,res){
-        console.log(req.body.address + upload.name)
-        if(req.body.name === ''){
-            //if no name it becomes anon
-              req.body.name = 'anon'
-              }
-         orm.insertOne(req.body.address,req.body.name)
-         //creates a sepearate folder based on the uploaders name(1 second delay to ensure that proper form is caught by .mv)
-         setTimeout(function (res) {upload.mv(`./users/${req.body.name}/${upload.name}`)}, 1000)
-        res.send("Data Logged")
-         setTimeout(function (res) {console.log(upload.name)},1000 )
-    });
+});
+
+//Seperate Post Route for JSON data
+app.post("/api/data",cors(), function (req,res){
+    if(req.body.name === ''){
+        //if no name it becomes anon
+          req.body.name = 'anon'
+          }
+          orm.insertOne(req.body.address,req.body.name)
+          res.send('Data Recieved')
 });
 
 //when proper user route is input will pull users 10 most recently uploaded memes
@@ -126,3 +115,12 @@ app.post("/api/delete", function(req, res) {
     console.log(req.id)
     res.send(`delete request at ${req.body.id}`)
 });
+
+//Failback for React Router Functionality
+app.get('/*', function(req, res) {
+    res.sendFile(path.join(__dirname, 'Client/jubjub/build/index.html'), function(err) {
+      if (err) {
+        res.status(500).send(err)
+      }
+    })
+  })
