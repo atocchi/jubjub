@@ -1,3 +1,37 @@
+Meme Repository
+
+![memes](snipsnip.PNG)
+
+
+#See React Bootstrap readme below
+
+This page is a simple CRUD application using Express and a React Front end to allow photo uploads,
+
+currently it running on a RaspberryPI at my house using a DDNS router to associate it with it's own domain, hence the really long Domain.
+
+To Do
+- Stablize Server, currently drops out a lot and requires remote SSH sessions via PuTTY to restart
+- Allow user to update, memes they have posted
+- Allow users to Comment on memes
+- More filtering using Mysql Queries
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
